@@ -88,7 +88,7 @@ peak2blockTrack = function(np_f, label = "Track Name", color = "gray"){
 function(input, output, session) {
   
   output$TnTTest = renderTnT({
-    qgr = GRanges("chr6", IRanges(25.1*10^6, 25.5*10^6))
+    qgr = GRanges("chr6", IRanges(23.1*10^6, 27.5*10^6))
     #import using rtracklayer
     runx1_gr = import.bw(bw_files$MDA231_Runx1_pooled_FE.bw, which = qgr)
     runx2_gr = import.bw(bw_files$MDA231_Runx2_pooled_FE.bw, which = qgr)
@@ -96,16 +96,16 @@ function(input, output, session) {
     bt_runx1 = bedgraph2blockTrack(runx1_gr, label = "Runx1 FE", color = "green")
     bt_runx2 = bedgraph2blockTrack(runx2_gr, label = "Runx2 FE", color = "purple")
     #line tracks
-    lt_runx1 = bedgraph2lineTrack(runx1_gr, label = "Runx1 FE", color = "green", win = 50, floor_at = 0)
-    lt_runx2 = bedgraph2lineTrack(runx2_gr, label = "Runx2 FE", color = "purple", win = 50, floor_at = 0)
+    lt_runx1 = bedgraph2lineTrack(runx1_gr, label = "Runx1 FE", color = "green", win = 50, floor_at = 1)
+    lt_runx2 = bedgraph2lineTrack(runx2_gr, label = "Runx2 FE", color = "purple", win = 50, floor_at = 1)
     #peak tracks 
     np_runx1 = peak2blockTrack(np_files$MDA231_Runx1_pooled_peaks.narrowPeak, label = "Runx1 Peaks", color = "green")
     np_runx2 = peak2blockTrack(np_files$MDA231_Runx2_pooled_peaks.narrowPeak, label = "Runx2 Peaks", color = "purple")
     
-    vgr = GRanges("chr6", IRanges(25.2789*10^6-1800, 25.2793*10^6+1800))
+    vgr = GRanges("chr6", IRanges(25.972*10^6-1800, 26.228*10^6+1800))
     genome(seqinfo(vgr)) = "hg38"
     TnTGenome(tracklist = list(bt_runx1, bt_runx2, lt_runx1, lt_runx2, np_runx1, np_runx2)[c(5,1,3,6,2,4)], 
-              zoom.allow = c(1000, 200000),
+              zoom.allow = c(1000, 10^6),
               coord.range = ranges(qgr),
               view.range = vgr)
   })
