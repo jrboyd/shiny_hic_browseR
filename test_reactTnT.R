@@ -1,3 +1,4 @@
+library(TnT)
 if (interactive() && require(shiny)) {
   ui <- fluidPage(fluidRow(
     column(width = 2, {
