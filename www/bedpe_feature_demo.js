@@ -2,8 +2,6 @@ var custom_feature = function (div, win_size) {
   
   var board = tnt.board().from(0).to(win_size*4).min(-win_size).max(win_size*6).width(500).zoom_out(win_size*8).zoom_in(win_size);
 
-
-
   // Axis track
   var axis_track = tnt.board.track()
   .height(30)
@@ -12,15 +10,7 @@ var custom_feature = function (div, win_size) {
            .orientation("bottom")
   );
   
-  /*
-  board.pane
-  .append("text")
-  .text("debug");
-  */
-  
   var bedpe_feature = new_bedpe(board, win_size);
-
-  
   
   // Data track
   var bedpe_track = tnt.board.track()
@@ -81,7 +71,6 @@ var custom_feature = function (div, win_size) {
             ];
         })
   );
-  
   
   board
   .add_track([bedpe_track, axis_track]);

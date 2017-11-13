@@ -2,8 +2,6 @@
 var new_bedpe = function(board, win_size){
 // bedpe feature
   var bedpe_feature = tnt.board.track.feature();
-
-  
     
   // Create
   bedpe_feature.create (function (elems) {
@@ -35,7 +33,6 @@ var new_bedpe = function(board, win_size){
       }
       return out;
     };
-    
  
     var g = elems
     .append("g");
@@ -49,7 +46,6 @@ var new_bedpe = function(board, win_size){
     });
 
   });
-  
   
   // Move
   bedpe_feature.move (function (blocks) {
