@@ -24,6 +24,20 @@ gen_signal = function(centers, widths = rep(2, length(centers)), heights = 100*w
   return(as.numeric(signal))
 }
 
+new_track <- function (class, data, display = list(), background = NULL, height = NULL, label = NULL) {
+  track <- new(Class = class, Data = data, Display = display)
+  if (length(label) > 1L)
+    label <- paste(label, collapse = " ")
+  trackSpec(track, "background") <- background
+  trackSpec(track, "height")     <- height
+  trackSpec(track, "label")      <- label
+  track
+}
+
+
+
+
+
 peak_pos = c(30, 40, 60)
 
 signal = gen_signal(centers = peak_pos, widths = c(1, 2, 1))
