@@ -1,4 +1,4 @@
-var custom_feature = function (div, win_size) {
+var bedpe_feature_demo = function (div, win_size) {
   
   var board = tnt.board().from(0).to(win_size*4).min(-win_size).max(win_size*6).width(500).zoom_out(win_size*8).zoom_in(win_size);
 
@@ -22,15 +22,15 @@ var custom_feature = function (div, win_size) {
           return [
             {
               s1 : 0,
-              e1 : win_size,
+              e1 : win_size*2,
               s2 : 0,
-              e2 : win_size,
+              e2 : win_size*2,
               color : "red",
           
             },
             {
-              s1 : win_size,
-              e1 : win_size*2,
+              s1 : win_size*3,
+              e1 : win_size*4,
               s2 : win_size,
               e2 : win_size*2,
               color : "orange",
@@ -38,15 +38,15 @@ var custom_feature = function (div, win_size) {
             },
             {
               s1 : win_size*2,
-              e1 : win_size*3,
-              s2 : win_size*2,
-              e2 : win_size*3,
+              e1 : win_size*4,
+              s2 : win_size*4,
+              e2 : win_size*5,
               color : "blue",
           
             },
             {
-              s1 : win_size*0,
-              e1 : win_size*1,
+              s1 : win_size*5,
+              e1 : win_size*6,
               s2 : win_size*1,
               e2 : win_size*2,
               color : "darkred",
