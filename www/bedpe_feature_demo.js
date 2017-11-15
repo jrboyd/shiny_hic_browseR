@@ -10,13 +10,11 @@ var bedpe_feature_demo = function (div, win_size) {
            .orientation("bottom")
   );
   
-  var bedpe_feature = new_bedpe(board, win_size);
-  
   // Data track
   var bedpe_track = tnt.board.track()
   .height(300)
   .color("white")
-  .display(bedpe_feature)
+  .display(bedpe_feature(board))
   .data(tnt.board.track.data.sync()
         .retriever (function () {
           return [
@@ -66,6 +64,22 @@ var bedpe_feature_demo = function (div, win_size) {
               s2 : win_size*2,
               e2 : win_size*3,
               color : "green",
+          
+            },
+            {
+              s1 : win_size*-1,
+              e1 : win_size*0,
+              s2 : win_size*1,
+              e2 : win_size*2,
+              color : "black",
+          
+            },
+            {
+              s1 : win_size*-1,
+              e1 : win_size*1,
+              s2 : win_size*6,
+              e2 : win_size*3,
+              color : "gray",
           
             }
             ];

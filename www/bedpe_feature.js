@@ -1,5 +1,5 @@
 
-var new_bedpe = function(board, win_size){
+var bedpe_feature = function(board){
 // bedpe feature
   var bedpe_feature = tnt.board.track.feature();
     
@@ -10,7 +10,7 @@ var new_bedpe = function(board, win_size){
 
     var y = track.height();
     //var x = track.width();
-    var ymax = (board.width() / (xScale(win_size) - xScale(0)) * win_size);
+    var ymax = (board.width() / (xScale(10000) - xScale(0)) * 10000);
     var yScale = function(ycoord){
       return (y - (0 + ycoord)/ymax * y);
     };
@@ -53,7 +53,7 @@ var new_bedpe = function(board, win_size){
     var track = this;
     var y = track.height();
     //syncs yScale with xScale
-    var ymax = (board.width() / (xScale(win_size) - xScale(0)) * win_size);//board.to() - board.from();
+    var ymax = (board.width() / (xScale(10000) - xScale(0)) * 10000);//board.to() - board.from();
     var yScale = function(ycoord){
       return (y - (0 + ycoord)/ymax * y);
     };

@@ -54,7 +54,50 @@ lt = LineTrack(gr, color = "blue", label = "line")
 lt2 = LineTrack(gr2, color = "green", label = "line")
 pt = PinTrack(gr[peak_pos], label = "pin")
 
+
+
+
+signal2hic = function(signal, max_dist = 20){
+  gr = GRanges("chr12", IRanges(1:length(signal), 1:length(signal)))
+  gr1 = NULL
+  gr2 = NULL
+  for(d in 0:max_dist){
+    for(i in 1:(length(gr) - d)){
+      s = i
+      e = i + d
+      g1 = gr[s]
+      g2 = gr[e]
+      v = min(signal[s], signal[e])
+      g1$value = v
+      if(is.null(gr1)){
+        gr1 = g1
+      }else{
+        gr1 = c(gr1, g1)
+      }
+      if(is.null(gr2)){
+        gr2 = g2
+      }else{
+        gr2 = c(gr2, g2)
+      }
+      
+    }
+  }
+  return(list(ranges1 = gr1, ranges2 = gr2))
+}
+
+hic_list = signal2hic(signal, max_dist = 20)
+rng_hic = range(hic_list$ranges1$value)
+hic_colors = rgb(colorRamp(c("slategray", "blue", "purple", "red"))(hic_list$ranges1$value / max(rng_hic))/255)
+hic_list$ranges1$color = hic_colors
+
+rpt = RangePairTrack(hic_list$ranges1, hic_list$ranges2)
 tb = TnTBoard(list(at, at2, lt, pt))
+tb
+tb = TnTBoard(list(at, at2, lt, pt, rpt))
+tb
+widget <- trackWidget(tb, elementId = NULL)
+tntdef <- compileBoard(tntdef)
+
 
 library(TnT)
 if (interactive() && require(shiny)) {
