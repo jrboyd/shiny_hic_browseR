@@ -1,34 +1,28 @@
-library(TnT)
-
+library(shinythemes)
+library(shiny)
+library(DT)
+library(shinyFiles)
+library(shinyjs)
 shinyUI(
+  
   fluidPage(
-    tags$h1('Testing shiny browser'),
-    tags$h3("Uses ", tags$a("TnT", href = "http://tnt.marlin.pub/", target="_blank")),
-    tags$h3("Takes a bit..."),
-    sidebarLayout(
-      sidebarPanel(
-        h1("bigwigs")
-        # checkboxInput("CheckFillLines", label = "Fill Lines", value = F)
+    useShinyjs(),
+    theme = shinytheme(theme = "spacelab"),
+    tags$h3("HiC browseR"),
+    tags$hr(),
+    fluidRow(
+      column(width = 4, 
+             h5("Setup Data Sources"),
+             shinyFilesButton(id = "FilesDataSource", 
+                              label = "Find Files on Server", 
+                              title = "Find Data Source Files", multiple = T),
+             actionButton(inputId = "BtnDeleteDataSource", "Delete"),
+             actionButton(inputId = "BtnEditDataSource", "Edit")
       ),
-      mainPanel(
-        TnTOutput("TnTTest_bw")
+      column(width = 8, 
+             DT::dataTableOutput("DT_DataSources")
       )
     ),
-    sidebarLayout(
-      sidebarPanel(
-        h1("hic")
-        # checkboxInput("CheckFillLines", label = "Fill Lines", value = F)
-      ),
-      mainPanel(
-        TnTOutput("TnTTest_hic")
-      )
-    )
-
-    # sidebarPanel(
-    #   # selectInput('style', 'Style', c("a", "b", "c"))#,
-    # ),
-    # mainPanel(
-    #   # plotOutput('plot1')
-    # )
+    tags$hr()
   )
 )
