@@ -42,3 +42,4 @@ tmp_norm_by_diagonal.R
 tmp_reference_ggplot_bullshit.R
 TnT
 tnt
+*.save

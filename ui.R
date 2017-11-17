@@ -3,6 +3,10 @@ library(shiny)
 library(DT)
 library(shinyFiles)
 library(shinyjs)
+
+source("module_file_addedit_datasource.R")
+source("module_display_addedit_datasource.R")
+
 shinyUI(
   
   fluidPage(
@@ -10,19 +14,11 @@ shinyUI(
     theme = shinytheme(theme = "spacelab"),
     tags$h3("HiC browseR"),
     tags$hr(),
-    fluidRow(
-      column(width = 4, 
-             h5("Setup Data Sources"),
-             shinyFilesButton(id = "FilesDataSource", 
-                              label = "Find Files on Server", 
-                              title = "Find Data Source Files", multiple = T),
-             actionButton(inputId = "BtnDeleteDataSource", "Delete"),
-             actionButton(inputId = "BtnEditDataSource", "Edit")
-      ),
-      column(width = 8, 
-             DT::dataTableOutput("DT_DataSources")
-      )
-    ),
-    tags$hr()
+    tags$h4("1) Locate DataSources"),
+    module_file_addedit_datasource_ui(),
+    tags$hr(),
+    tags$h4("2) Configure DataSource Plots"),
+    uiOutput(outputId = "SelectDataSource"),
+    module_display_addedit_datasource_ui()
   )
 )
