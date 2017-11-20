@@ -2,12 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-class_HiC_matrix.R
-class_HiC_matrix_helpers.R
-class_HiC_matrix_wInsulation.R
-class_HiC_parameters.R
 class_HiC_sample_set.R
-class_integrated_plots.R
 compare_bw_methods.R
 function_delta_calc.R
 functions_tadness.R
